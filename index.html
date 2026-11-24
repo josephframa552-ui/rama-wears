@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAMA WEARS</title>
+<meta name="description" content="RAMA WEARS — modern essentials, cut to last.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Theme: warm champagne, creamy ivory, deep forest green, muted gold */
+:root{
+  --ivory:#FAF6EC;
+  --champagne:#EAD9BC;
+  --champagne-2:#F3E8D4;
+  --forest:#1F3A2E;
+  --forest-2:#2C4D3E;
+  --gold:#B39459;
+  --gold-soft:#CDB685;
+
+  --bg:var(--ivory);
+  --surface:var(--champagne-2);
+  --ink:#1A2620;
+  --muted:#6E6A5C;
+  --line:#E2D5BC;
+  --accent:var(--gold);
+  --strong:var(--forest);
+  --on-strong:var(--ivory);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121C17; --surface:#1A2821; --ink:#F3EADA; --muted:#A9A08C;
+    --line:#2B3B32; --accent:var(--gold-soft); --strong:var(--champagne); --on-strong:#14201A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121C17; --surface:#1A2821; --ink:#F3EADA; --muted:#A9A08C;
+  --line:#2B3B32; --accent:var(--gold-soft); --strong:var(--champagne); --on-strong:#14201A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font-family:Jost,system-ui,sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+.serif{font-family:"Cormorant Garamond",serif}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);font-weight:500}
+
+/* announcement */
+.bar{background:var(--forest);color:var(--champagne);font-size:11px;letter-spacing:.24em;text-transform:uppercase;text-align:center;padding:10px 16px}
+.bar b{color:var(--gold-soft);font-weight:500}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:76px;gap:24px}
+.logo{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:26px;letter-spacing:.28em;text-align:center;color:var(--strong);line-height:1}
+.logo small{display:block;font-family:Jost,sans-serif;font-size:9px;letter-spacing:.5em;color:var(--accent);margin-top:4px;font-weight:500}
+.links{display:flex;gap:30px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.links a{position:relative;padding:4px 0}
+.links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--accent);transition:width .3s}
+.links a:hover::after{width:100%}
+.actions{display:flex;gap:20px;align-items:center;justify-content:flex-end;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.cart-btn{display:flex;gap:8px;align-items:center}
+.count{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:11px;background:var(--strong);color:var(--on-strong);font-size:11px;padding:0 6px;letter-spacing:0}
+.menu-btn{display:none}
+
+/* hero */
+.hero{position:relative;min-height:min(88vh,820px);display:grid;align-items:end;overflow:hidden;color:var(--ivory)}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;transform:scale(1.04);animation:zoom 14s ease-out forwards}
+@keyframes zoom{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,32,25,.82) 0%,rgba(18,32,25,.45) 45%,rgba(18,32,25,.05) 75%),linear-gradient(0deg,rgba(18,32,25,.55),transparent 40%)}
+.hero-inner{position:relative;z-index:1;padding:96px 0 88px}
+.hero .eyebrow{color:var(--gold-soft)}
+h1{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(56px,9vw,132px);line-height:.92;letter-spacing:-.01em;margin:20px 0 26px;max-width:820px}
+h1 em{color:var(--gold-soft)}
+.lede{max-width:460px;font-size:17px;font-weight:300;color:rgba(250,246,236,.85)}
+.cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;border:1px solid currentColor;transition:background .3s,color .3s,border-color .3s,transform .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#1A2620}
+.btn.gold:hover{background:var(--gold-soft);border-color:var(--gold-soft)}
+.btn.line-light{color:var(--ivory)}
+.btn.line-light:hover{background:var(--ivory);color:var(--forest)}
+.btn.solid{background:var(--strong);border-color:var(--strong);color:var(--on-strong)}
+.btn.solid:hover{background:var(--accent);border-color:var(--accent);color:#1A2620}
+.hero-foot{position:absolute;right:32px;bottom:32px;z-index:1;display:flex;gap:28px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,236,.8)}
+.hero-foot b{display:block;font-family:"Cormorant Garamond",serif;font-size:30px;letter-spacing:0;color:var(--gold-soft);font-weight:500;text-transform:none}
+
+/* marquee */
+.marquee{background:var(--champagne);color:var(--forest);overflow:hidden;white-space:nowrap;padding:18px 0;border-block:1px solid var(--gold-soft)}
+.marquee-track{display:inline-flex;gap:56px;animation:slide 36s linear infinite;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:26px}
+.marquee-track span{display:inline-flex;gap:56px;align-items:center}
+.marquee-track i{width:7px;height:7px;transform:rotate(45deg);background:var(--gold);display:inline-block}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee-track,.hero>img{animation:none}}
+
+/* sections */
+section{padding:112px 0;scroll-margin-top:76px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+h2{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(40px,5.2vw,72px);line-height:1;letter-spacing:-.01em;margin-top:12px;color:var(--strong)}
+h2 em{color:var(--accent)}
+
+/* filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:10px 18px;border:1px solid var(--line);font-size:12px;letter-spacing:.14em;text-transform:uppercase;transition:.25s}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--strong);color:var(--on-strong);border-color:var(--strong)}
+
+/* products */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px 22px}
+.card{display:flex;flex-direction:column;gap:14px}
+.thumb{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--surface)}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s}
+.thumb img.alt{position:absolute;inset:0;opacity:0}
+.card:hover .thumb img{transform:scale(1.05)}
+.card:hover .thumb img.alt{opacity:1}
+.badge{position:absolute;top:14px;left:14px;z-index:2;background:var(--ivory);color:var(--forest);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;border:1px solid var(--gold-soft)}
+.add{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;padding:14px;background:var(--forest);color:var(--ivory);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:0;transform:translateY(10px);transition:.3s}
+.add:hover{background:var(--gold);color:#1A2620}
+.card:hover .add,.add:focus-visible{opacity:1;transform:none}
+.meta{display:flex;justify-content:space-between;gap:12px}
+.meta .name{font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1.2;font-weight:500}
+.meta small{display:block;color:var(--muted);font-size:12px;letter-spacing:.06em}
+.price{font-size:15px;color:var(--accent);font-weight:500;white-space:nowrap}
+.swatches{display:flex;gap:6px;margin-top:8px}
+.swatches i{width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 1px var(--line),inset 0 0 0 1px rgba(0,0,0,.08)}
+
+/* editorial split */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:640px}
+.split .pic{position:relative;overflow:hidden}
+.split .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.split .txt{background:var(--forest);color:var(--ivory);padding:88px 72px;display:flex;flex-direction:column;justify-content:center}
+.split .txt h2{color:var(--champagne)}
+.split .txt h2 em{color:var(--gold-soft)}
+.split .txt p{color:rgba(250,246,236,.78);font-weight:300;margin:24px 0 36px;max-width:440px}
+.split .txt .btn{align-self:flex-start;color:var(--gold-soft)}
+.split .txt .btn:hover{background:var(--gold-soft);color:var(--forest);border-color:var(--gold-soft)}
+
+/* collections */
+.collections{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:22px}
+.coll{position:relative;aspect-ratio:3/4;overflow:hidden;color:var(--ivory);padding:32px;display:flex;flex-direction:column;justify-content:flex-end}
+.coll img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.coll:hover img{transform:scale(1.06)}
+.coll::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,32,25,.85),rgba(18,32,25,.1) 55%)}
+.coll::before{content:"";position:absolute;inset:14px;border:1px solid rgba(205,182,133,.0);transition:border-color .4s;z-index:2;pointer-events:none}
+.coll:hover::before{border-color:rgba(205,182,133,.7)}
+.coll>*:not(img){position:relative;z-index:1}
+.coll h3{font-family:"Cormorant Garamond",serif;font-size:44px;line-height:1;font-weight:400}
+.coll p{font-size:14px;font-weight:300;opacity:.85;margin-top:8px}
+.coll .arrow{margin-top:18px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft)}
+
+/* story */
+.story{background:var(--champagne);color:var(--forest)}
+.story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+.story-pics{position:relative;aspect-ratio:4/5}
+.story-pics img{position:absolute;object-fit:cover;box-shadow:0 30px 60px -30px rgba(31,58,46,.5)}
+.story-pics .a{inset:0 22% 18% 0;width:78%;height:82%}
+.story-pics .b{right:0;bottom:0;width:48%;height:52%;border:8px solid var(--champagne)}
+.story blockquote{font-family:"Cormorant Garamond",serif;font-size:clamp(32px,3.6vw,50px);line-height:1.12;margin-top:16px}
+.story blockquote em{color:#8C7240}
+.story p{color:#4C5A50;margin-top:22px;max-width:520px;font-weight:300}
+.story .eyebrow{color:#8C7240}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;border-top:1px solid rgba(31,58,46,.2);padding-top:28px}
+.stats b{display:block;font-family:"Cormorant Garamond",serif;font-size:46px;line-height:1;font-weight:500}
+.stats span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#5D6A60}
+
+/* values */
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.value{background:var(--surface);padding:40px 34px;border:1px solid var(--line);position:relative}
+.value .icon{width:52px;height:52px;border:1px solid var(--accent);border-radius:50%;display:grid;place-items:center;color:var(--accent);margin-bottom:24px}
+.value h4{font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:500;margin-bottom:8px;color:var(--strong)}
+.value p{color:var(--muted);font-size:15px;font-weight:300}
+
+/* lookbook */
+.look{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.look a{position:relative;aspect-ratio:1;overflow:hidden}
+.look img{width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .6s;filter:saturate(.9)}
+.look a:hover img{transform:scale(1.08);filter:saturate(1.05)}
+
+/* newsletter */
+.news{position:relative;overflow:hidden;background:var(--forest);color:var(--ivory);padding:80px 64px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.news::before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border:1px solid rgba(205,182,133,.35);border-radius:50%}
+.news::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border:1px solid rgba(205,182,133,.2);border-radius:50%}
+.news h2{color:var(--champagne)}
+.news h2 em{color:var(--gold-soft)}
+.news>*{position:relative;z-index:1}
+.news form{display:flex;gap:0;flex-wrap:wrap;border-bottom:1px solid var(--gold-soft)}
+.news input{flex:1;min-width:180px;padding:16px 4px;border:0;background:transparent;color:var(--ivory);font:inherit;font-size:16px}
+.news input::placeholder{color:rgba(250,246,236,.5)}
+.news input:focus{outline:none}
+.news form:focus-within{border-color:var(--ivory)}
+.news button{color:var(--gold-soft);font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:0 4px}
+.news .msg{font-size:14px;color:var(--gold-soft);margin-top:14px;min-height:22px}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.svc{display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);transition:border-color .3s,transform .3s}
+.svc:hover{border-color:var(--accent);transform:translateY(-4px)}
+.svc .ph{aspect-ratio:4/3;overflow:hidden}
+.svc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.svc:hover .ph img{transform:scale(1.06)}
+.svc .body{padding:26px 24px 28px;display:flex;flex-direction:column;gap:8px;flex:1}
+.svc h4{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:500;color:var(--strong);line-height:1.1}
+.svc p{color:var(--muted);font-size:14px;font-weight:300;flex:1}
+.svc .from{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-top:10px}
+
+/* delivery */
+.delivery{background:var(--surface);border-block:1px solid var(--line)}
+.del-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:64px;align-items:start}
+.del-grid>*,.contact-grid>*{min-width:0}
+.del-intro p{color:var(--muted);font-weight:300;margin-top:18px;max-width:420px}
+.steps{display:flex;gap:0;margin-top:36px}
+.step{flex:1;position:relative;padding-top:28px;font-size:13px;color:var(--muted)}
+.step::before{content:"";position:absolute;top:6px;left:0;right:0;height:1px;background:var(--line)}
+.step::after{content:"";position:absolute;top:0;left:0;width:13px;height:13px;border-radius:50%;background:var(--bg);border:1px solid var(--accent)}
+.step:first-child::after{background:var(--accent)}
+.step b{display:block;color:var(--strong);font-weight:500;font-size:14px}
+.rates{width:100%;border-collapse:collapse;background:var(--bg);border:1px solid var(--line)}
+.rates th,.rates td{padding:18px 22px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+.rates th{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;background:var(--surface)}
+.rates td:first-child{font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:500;color:var(--strong)}
+.rates td:last-child{text-align:right;white-space:nowrap}
+.rates th:last-child{text-align:right}
+.rates tr:last-child td{border-bottom:0}
+.free{color:var(--accent);font-weight:500}
+.del-note{font-size:13px;color:var(--muted);margin-top:16px}
+
+/* reviews */
+.rev-top{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.rev-score{font-family:"Cormorant Garamond",serif;font-size:64px;line-height:1;color:var(--strong)}
+.stars{color:var(--accent);letter-spacing:3px;font-size:16px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rev{background:var(--surface);border:1px solid var(--line);padding:34px 30px;display:flex;flex-direction:column;gap:18px;position:relative}
+.rev::before{content:"“";position:absolute;top:6px;right:22px;font-family:"Cormorant Garamond",serif;font-size:96px;line-height:1;color:var(--accent);opacity:.35}
+.rev q{font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1.35;quotes:none;flex:1}
+.who{display:flex;align-items:center;gap:14px;border-top:1px solid var(--line);padding-top:18px}
+.who img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1px solid var(--gold-soft)}
+.who b{display:block;font-weight:500;font-size:14px}
+.who small{color:var(--muted);font-size:12px}
+.verified{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+
+/* lead form */
+.lead{display:grid;grid-template-columns:1fr 1.1fr;background:var(--forest);color:var(--ivory);overflow:hidden}
+.lead .pic{position:relative;min-height:560px}
+.lead .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lead .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,32,25,.6),transparent 50%)}
+.lead .pic .perk{position:absolute;left:28px;bottom:28px;z-index:1;font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1.15;max-width:300px}
+.lead .pic .perk em{color:var(--gold-soft)}
+.lead .form-side{padding:64px 60px;position:relative}
+.lead h2{color:var(--champagne)}
+.lead h2 em{color:var(--gold-soft)}
+.lead .sub{color:rgba(250,246,236,.75);font-weight:300;margin:14px 0 30px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft)}
+.field input,.field select,.field textarea{background:transparent;border:0;border-bottom:1px solid rgba(205,182,133,.45);padding:10px 2px;color:var(--ivory);font:inherit;font-size:15px;border-radius:0}
+.field select option{color:#1A2620}
+.field textarea{resize:vertical;min-height:70px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ivory)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(250,246,236,.4)}
+.field.bad input,.field.bad select{border-color:#E0896B}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:rgba(250,246,236,.75);font-weight:300}
+.check input{accent-color:var(--gold);margin-top:4px}
+.lead .btn{margin-top:26px}
+.lead .btn:disabled{opacity:.6;cursor:wait;transform:none}
+.form-msg{min-height:22px;margin-top:14px;font-size:14px;color:var(--gold-soft)}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch}
+.cinfo{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-content:start}
+.ccard{border:1px solid var(--line);padding:26px 24px;background:var(--surface)}
+.ccard .icon{color:var(--accent);margin-bottom:14px}
+.ccard h5{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+.ccard p,.ccard a{font-size:15px;font-weight:300;line-height:1.6}
+.ccard a:hover{color:var(--accent)}
+.store{position:relative;min-height:420px;overflow:hidden}
+.store img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.store .pin{position:absolute;left:24px;bottom:24px;right:24px;background:var(--bg);border:1px solid var(--gold-soft);padding:22px 24px;display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+.store .pin b{font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:500;color:var(--strong);display:block}
+.store .pin small{color:var(--muted);font-size:13px}
+
+/* footer */
+footer{padding:88px 0 32px;background:var(--surface);border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+.foot .logo{text-align:left}
+.foot h5{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;font-weight:500}
+.foot li{list-style:none;margin-bottom:10px;font-size:14px;font-weight:300}
+.foot li a:hover{color:var(--accent)}
+.bigname{font-family:"Cormorant Garamond",serif;font-size:clamp(60px,15vw,230px);font-weight:500;letter-spacing:.04em;line-height:.85;margin-top:72px;white-space:nowrap;text-align:center;color:transparent;-webkit-text-stroke:1px var(--accent)}
+.legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+
+/* cart drawer */
+.scrim{position:fixed;inset:0;background:rgba(18,32,25,.5);opacity:0;pointer-events:none;transition:.3s;z-index:50}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(440px,100%);background:var(--bg);z-index:60;transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.open .scrim{opacity:1;pointer-events:auto}
+.open .drawer{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:24px 28px;border-bottom:1px solid var(--line);font-family:"Cormorant Garamond",serif;font-size:26px}
+.items{flex:1;overflow:auto;padding:8px 28px}
+.item{display:grid;grid-template-columns:72px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px}
+.item img{width:72px;aspect-ratio:3/4;object-fit:cover}
+.item .n{font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:500}
+.qty{display:flex;gap:12px;align-items:center;margin-top:6px;color:var(--muted)}
+.qty button{width:26px;height:26px;border:1px solid var(--line);border-radius:50%}
+.qty button:hover{border-color:var(--accent)}
+.empty{color:var(--muted);text-align:center;padding:72px 0;font-family:"Cormorant Garamond",serif;font-size:22px;font-style:italic}
+.drawer-foot{padding:24px 28px;border-top:1px solid var(--line);background:var(--surface)}
+.total{display:flex;justify-content:space-between;margin-bottom:18px;font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+.total span:last-child{color:var(--accent);font-weight:500}
+.drawer-foot .btn{width:100%;justify-content:center}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--forest);color:var(--ivory);border:1px solid var(--gold);padding:13px 22px;font-size:13px;letter-spacing:.06em;transition:.35s;z-index:70}
+.toast.show{transform:translate(-50%,0)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+
+/* responsive */
+@media (max-width:1180px){
+  .nav{grid-template-columns:auto 1fr auto}
+  .logo{text-align:left}
+  .links{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}
+  .links.show{display:flex}
+  .links a{padding:16px 32px;border-top:1px solid var(--line)}
+  .menu-btn{display:block}
+}
+@media (max-width:1024px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .services{grid-template-columns:1fr 1fr}
+  .del-grid,.contact-grid,.lead{grid-template-columns:1fr}
+  .lead .pic{min-height:360px}
+  .reviews{grid-template-columns:1fr 1fr}
+  .story-grid,.news,.split{grid-template-columns:1fr}
+  .split .pic{min-height:420px}
+  .collections{grid-template-columns:1fr 1fr}
+  .collections .c1{grid-column:span 2;aspect-ratio:16/9}
+  .foot{grid-template-columns:1fr 1fr}
+  .look{grid-template-columns:repeat(3,1fr)}
+  .story-pics{max-width:520px}
+}
+@media (max-width:760px){
+  .wrap{padding:0 16px}
+  .nav{grid-template-columns:auto 1fr auto;height:64px}
+  .logo{font-size:20px;text-align:left}
+  .links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}
+  .links.show{display:flex}
+  .links a{padding:16px;border-top:1px solid var(--line)}
+  .menu-btn{display:block}
+  .actions .hide-sm{display:none}
+  .hero-foot{display:none}
+  .hero-inner{padding:72px 0 56px}
+  section{padding:72px 0}
+  .grid{grid-template-columns:1fr 1fr;gap:28px 12px}
+  .collections{grid-template-columns:1fr}
+  .collections .c1{grid-column:auto;aspect-ratio:3/4}
+  .values{grid-template-columns:1fr}
+  .split .txt{padding:56px 20px}
+  .news{padding:48px 20px}
+  .add{opacity:1;transform:none;padding:10px;font-size:10px;letter-spacing:.14em}
+  .meta{flex-direction:column;gap:2px}
+  .meta .name{font-size:19px}
+  .stats b{font-size:34px}
+  .look{grid-template-columns:repeat(2,1fr)}
+  .links{top:64px}
+  .links a{padding:16px}
+  .services,.reviews,.cinfo,.fgrid{grid-template-columns:1fr}
+  .lead .form-side{padding:48px 20px}
+  .steps{flex-direction:column;gap:18px}
+  .step{padding:0 0 0 28px}
+  .step::before{top:0;bottom:-18px;left:6px;right:auto;width:1px;height:auto}
+  .step:last-child::before{display:none}
+  .rates th,.rates td{padding:12px 10px;font-size:13px}
+  .rates td:first-child{font-size:17px}
+  .store .pin{left:12px;right:12px;bottom:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">Complimentary shipping over <b>$120</b> &nbsp;·&nbsp; 30-day returns</div>
+
+<header>
+  <div class="wrap nav">
+    <nav class="links" id="links">
+      <a href="#shop">Shop</a>
+      <a href="#collections">Collections</a>
+      <a href="#services">Services</a>
+      <a href="#delivery">Delivery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#" class="logo">RAMA<small>WEARS</small></a>
+    <div class="actions">
+      <button class="hide-sm" id="themeBtn" aria-label="Toggle theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+      </button>
+      <button class="cart-btn" id="cartBtn" aria-label="Open bag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="count" id="count">0</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding:0">
+    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2000&q=80" alt="Rail of neutral-toned garments in a sunlit studio" fetchpriority="high">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Autumn / Winter 2026 Collection</div>
+      <h1>Quiet luxury,<br><em>made to last.</em></h1>
+      <p class="lede">Modern essentials in organic cotton, merino and fine linen. Cut clean, finished by hand, and priced with honesty.</p>
+      <div class="cta">
+        <a href="#shop" class="btn gold">Shop the collection</a>
+        <a href="#story" class="btn line-light">Our story</a>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <div><b>320</b>gsm cotton</div>
+      <div><b>5 yr</b>wear promise</div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Organic cotton <i></i> Ethically made <i></i> Designed in-house <i></i> Finished by hand <i></i> Free repairs <i></i></span>
+      <span>Organic cotton <i></i> Ethically made <i></i> Designed in-house <i></i> Finished by hand <i></i> Free repairs <i></i></span>
+    </div>
+  </div>
+
+  <section id="shop">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><div class="eyebrow">The new season</div><h2>New <em>arrivals</em></h2></div>
+        <div class="filters" id="filters">
+          <button class="chip" aria-pressed="true" data-f="all">All</button>
+          <button class="chip" aria-pressed="false" data-f="tops">Tops</button>
+          <button class="chip" aria-pressed="false" data-f="outer">Outerwear</button>
+          <button class="chip" aria-pressed="false" data-f="bottoms">Bottoms</button>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <div class="split">
+    <div class="pic"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1400&q=80" alt="Model in a tailored autumn outfit" loading="lazy"></div>
+    <div class="txt reveal">
+      <div class="eyebrow" style="color:var(--gold-soft)">The Atelier Edit</div>
+      <h2>Tailoring for <em>everyday</em> life</h2>
+      <p>Soft-shouldered coats, fluid trousers and knitwear you'll reach for every morning. Each piece is made in small runs by partner ateliers we visit in person.</p>
+      <a href="#shop" class="btn">Discover the edit →</a>
+    </div>
+  </div>
+
+  <section id="collections">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="eyebrow">Curated</div><h2>Shop by <em>mood</em></h2></div></div>
+      <div class="collections">
+        <a href="#shop" class="coll c1 reveal"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80" alt="" loading="lazy"><h3>Champagne</h3><p>Light neutrals for slow weekends.</p><span class="arrow">Explore →</span></a>
+        <a href="#shop" class="coll c2 reveal"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" alt="" loading="lazy"><h3>Forest</h3><p>Deep greens and utility layers.</p><span class="arrow">Explore →</span></a>
+        <a href="#shop" class="coll c3 reveal"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80" alt="" loading="lazy"><h3>Gilded</h3><p>Evening pieces with quiet shine.</p><span class="arrow">Explore →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="wrap story-grid">
+      <div class="story-pics reveal">
+        <img class="a" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80" alt="Inside the RAMA WEARS studio" loading="lazy">
+        <img class="b" src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=700&q=80" alt="Garments hanging on a rail" loading="lazy">
+      </div>
+      <div class="reveal">
+        <div class="eyebrow">Our story</div>
+        <blockquote>“Fewer, finer clothes. Made by people we know, <em>worn</em> for years.”</blockquote>
+        <p>RAMA WEARS began with one perfect tee and a simple rule: if we wouldn't wear it for five years, we don't make it. Every piece is designed in-house and produced in small batches with workshops we trust.</p>
+        <div class="stats">
+          <div><b>100%</b><span>Traceable fabrics</span></div>
+          <div><b>12</b><span>Partner ateliers</span></div>
+          <div><b>5 yr</b><span>Wear promise</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap values">
+      <div class="value reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21c-5-3-8-7-8-11a8 8 0 0 1 16 0c0 4-3 8-8 11z"/><path d="M12 7v8M9 11l3-3 3 3"/></svg></div>
+        <h4>Honest materials</h4><p>Organic cotton, merino and recycled fibres. No mystery blends, ever.</p>
+      </div>
+      <div class="value reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 10h16M10 4v16"/></svg></div>
+        <h4>Small batches</h4><p>Limited runs cut waste and keep every stitch to our standard.</p>
+      </div>
+      <div class="value reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg></div>
+        <h4>Free repairs</h4><p>Loose button or torn seam? Send it back and we'll mend it for free.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><div class="eyebrow">Beyond the garment</div><h2>Our <em>services</em></h2></div>
+        <p style="max-width:380px;color:var(--muted);font-weight:300">Personal care at every step, from the first fitting to the tenth year of wear.</p>
+      </div>
+      <div class="services">
+        <article class="svc reveal">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=700&q=80" alt="Private styling studio" loading="lazy"></div>
+          <div class="body"><h4>Personal styling</h4><p>A one-to-one session with our stylists, in studio or by video call, to build a wardrobe around you.</p><div class="from">Complimentary</div></div>
+        </article>
+        <article class="svc reveal">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=700&q=80" alt="Garments on a tailoring rail" loading="lazy"></div>
+          <div class="body"><h4>Made to measure</h4><p>Trousers, shirts and outerwear cut to your measurements and finished by hand in 3–4 weeks.</p><div class="from">From $180</div></div>
+        </article>
+        <article class="svc reveal">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" alt="Neutral garments ready for alteration" loading="lazy"></div>
+          <div class="body"><h4>Alterations &amp; repairs</h4><p>Hemming, tapering and mending for every RAMA piece. Free repairs for five years.</p><div class="from">Free for 5 years</div></div>
+        </article>
+        <article class="svc reveal">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80" alt="Gift shopping bags" loading="lazy"></div>
+          <div class="body"><h4>Gifting &amp; corporate</h4><p>Signature gift wrapping, handwritten notes and bulk orders for teams and events.</p><div class="from">On request</div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERY -->
+  <section class="delivery" id="delivery">
+    <div class="wrap del-grid">
+      <div class="del-intro reveal">
+        <div class="eyebrow">Shipping &amp; returns</div>
+        <h2>Delivered <em>with care</em></h2>
+        <p>Every order is wrapped in recycled tissue and a reusable cotton bag, then tracked door to door.</p>
+        <div class="steps">
+          <div class="step"><b>Order</b>Confirmed instantly</div>
+          <div class="step"><b>Packed</b>Within 24 hours</div>
+          <div class="step"><b>Shipped</b>Tracking by email</div>
+          <div class="step"><b>Delivered</b>To your door</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <table class="rates">
+          <thead><tr><th>Service</th><th>Time</th><th>Cost</th></tr></thead>
+          <tbody>
+            <tr><td>Standard</td><td>3–5 business days</td><td>$8 · <span class="free">Free over $120</span></td></tr>
+            <tr><td>Express</td><td>1–2 business days</td><td>$18</td></tr>
+            <tr><td>Same-day</td><td>Order by 12pm, city only</td><td>$25</td></tr>
+            <tr><td>International</td><td>5–10 business days</td><td>From $30</td></tr>
+            <tr><td>Store pickup</td><td>Ready in 2 hours</td><td><span class="free">Free</span></td></tr>
+          </tbody>
+        </table>
+        <p class="del-note">Free returns and exchanges within 30 days. Items must be unworn with tags attached.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><div class="eyebrow">Customer reviews</div><h2>Loved <em>&amp; worn</em></h2></div>
+        <div class="rev-top"><div class="rev-score">4.9</div><div><div class="stars">★★★★★</div><small style="color:var(--muted)">Based on 2,140 reviews</small></div></div>
+      </div>
+      <div class="reviews">
+        <figure class="rev reveal">
+          <div class="stars">★★★★★</div>
+          <q>The Heavy Box Tee is the best tee I own. Two years in and it still holds its shape after every wash.</q>
+          <figcaption class="who"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=120&h=120&q=80" alt=""><div><b>Aarav M.</b><small>Heavy Box Tee</small><div class="verified">Verified buyer</div></div></figcaption>
+        </figure>
+        <figure class="rev reveal">
+          <div class="stars">★★★★★</div>
+          <q>The styling session was so relaxed. I left with five pieces that work together and nothing I'll never wear.</q>
+          <figcaption class="who"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=120&h=120&q=80" alt=""><div><b>Sophie L.</b><small>Personal styling</small><div class="verified">Verified buyer</div></div></figcaption>
+        </figure>
+        <figure class="rev reveal">
+          <div class="stars">★★★★★</div>
+          <q>Ordered on Monday, arrived Tuesday, wrapped beautifully. The merino knit is soft and genuinely warm.</q>
+          <figcaption class="who"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=120&h=120&q=80" alt=""><div><b>Priya K.</b><small>Merino Crew Knit</small><div class="verified">Verified buyer</div></div></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="eyebrow">@ramawears</div><h2>Worn <em>by you</em></h2></div></div>
+    </div>
+    <div class="look" id="look"></div>
+  </section>
+
+  <!-- LEAD FORM -->
+  <section id="book" style="padding-top:0">
+    <div class="wrap">
+      <div class="lead reveal">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1100&q=80" alt="Rail of RAMA WEARS garments" loading="lazy">
+          <div class="perk">Book a session and get <em>10% off</em> your first order.</div>
+        </div>
+        <div class="form-side">
+          <div class="eyebrow" style="color:var(--gold-soft)">Private appointments</div>
+          <h2>Book your <em>styling</em></h2>
+          <p class="sub">Tell us a little about you. A stylist will reach out within one business day.</p>
+          <form id="leadForm" novalidate>
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+            <div class="fgrid">
+              <div class="field"><label for="lName">Full name</label><input id="lName" name="name" placeholder="Jane Doe" required autocomplete="name"></div>
+              <div class="field"><label for="lEmail">Email</label><input id="lEmail" name="email" type="email" placeholder="you@example.com" required autocomplete="email"></div>
+              <div class="field"><label for="lPhone">Phone</label><input id="lPhone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel"></div>
+              <div class="field"><label for="lService">Interested in</label>
+                <select id="lService" name="service" required>
+                  <option value="">Choose a service</option>
+                  <option>Personal styling</option>
+                  <option>Made to measure</option>
+                  <option>Alterations &amp; repairs</option>
+                  <option>Gifting &amp; corporate</option>
+                </select>
+              </div>
+              <div class="field"><label for="lDate">Preferred date</label><input id="lDate" name="date" type="date"></div>
+              <div class="field"><label for="lBudget">Budget</label>
+                <select id="lBudget" name="budget"><option>Under $250</option><option>$250 – $500</option><option>$500 – $1,000</option><option>$1,000+</option></select>
+              </div>
+              <div class="field full"><label for="lNotes">Anything else?</label><textarea id="lNotes" name="notes" placeholder="Sizes, occasions, styles you love…"></textarea></div>
+              <label class="check full" style="grid-column:1/-1"><input type="checkbox" name="optin" checked> Send me early access to new drops and restocks.</label>
+            </div>
+            <button class="btn gold" type="submit">Request appointment</button>
+            <div class="form-msg" id="leadMsg" role="status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="eyebrow">Get in touch</div><h2>Contact <em>us</em></h2></div></div>
+      <div class="contact-grid">
+        <div class="cinfo">
+          <div class="ccard reveal">
+            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+            <h5>Flagship store</h5><p>24 Linden Row<br>Your City, 10001</p>
+          </div>
+          <div class="ccard reveal">
+            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <h5>Opening hours</h5><p>Mon – Sat · 10am – 7pm<br>Sun · 11am – 5pm</p>
+          </div>
+          <div class="ccard reveal">
+            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>
+            <h5>Call us</h5><a href="tel:+15550000000">+1 555 000 0000</a>
+          </div>
+          <div class="ccard reveal">
+            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></div>
+            <h5>Email</h5><a href="mailto:ramawears@gmail.com">ramawears@gmail.com</a>
+          </div>
+          <div class="ccard reveal" style="grid-column:1/-1">
+            <h5>Customer care</h5><p>Questions about an order, sizing or returns? Our team replies within 24 hours, seven days a week.</p>
+          </div>
+        </div>
+        <div class="store reveal">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80" alt="Inside the RAMA WEARS flagship store" loading="lazy">
+          <div class="pin"><div><b>Visit the flagship</b><small>Try on, get fitted, pick up online orders.</small></div><a href="#book" class="btn solid">Book a visit</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="logo">RAMA<small>WEARS</small></div>
+        <p style="color:var(--muted);margin-top:18px;max-width:300px;font-size:14px;font-weight:300">Modern essentials, cut to last. Designed with care, made in small batches.</p>
+      </div>
+      <div><h5>Shop</h5><ul><li><a href="#shop">New in</a></li><li><a href="#shop">Tops</a></li><li><a href="#shop">Outerwear</a></li><li><a href="#shop">Bottoms</a></li></ul></div>
+      <div><h5>Help</h5><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Size guide</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="#">Pinterest</a></li></ul></div>
+    </div>
+    <div class="bigname">RAMA WEARS</div>
+    <div class="legal"><span>© <span id="yr"></span> RAMA WEARS. All rights reserved.</span><span>Photography: Unsplash</span></div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping bag">
+  <div class="drawer-head">Your bag <button id="closeCart" aria-label="Close bag">✕</button></div>
+  <div class="items" id="items"></div>
+  <div class="drawer-foot">
+    <div class="total"><span>Subtotal</span><span id="subtotal">$0</span></div>
+    <button class="btn solid" id="checkout">Checkout</button>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+const U = (id, w=800) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+
+const products = [
+  {id:1,name:"Heavy Box Tee",cat:"tops",price:48,img:"photo-1521572163474-6864f9cf17ab",alt:"photo-1503342217505-b0a15ec3261c",colors:["#F4EFE4","#1F3A2E","#C7B08A"],badge:"Bestseller"},
+  {id:2,name:"Loop Hoodie",cat:"tops",price:98,img:"photo-1556821840-3a63f95609a7",alt:"photo-1620799140408-edc6dcb6d633",colors:["#2C4D3E","#EAD9BC","#2A2622"]},
+  {id:3,name:"Leather Rider Jacket",cat:"outer",price:289,img:"photo-1551028719-00167b16eac5",alt:"photo-1591047139829-d91aecb6caea",colors:["#2A2622","#6D5A3F"],badge:"New"},
+  {id:4,name:"Selvedge Denim",cat:"bottoms",price:132,img:"photo-1542272604-787c3835535d",alt:"photo-1594633312681-425c7b97ccd1",colors:["#2F3B4F","#1A2620"]},
+  {id:5,name:"Merino Crew Knit",cat:"tops",price:124,img:"photo-1620799140408-edc6dcb6d633",alt:"photo-1576566588028-4147f3842f27",colors:["#EAD9BC","#B39459","#1F3A2E"],badge:"New"},
+  {id:6,name:"Field Overshirt",cat:"outer",price:168,img:"photo-1591047139829-d91aecb6caea",alt:"photo-1551028719-00167b16eac5",colors:["#5B6650","#C7B08A"]},
+  {id:7,name:"Pleated Trouser",cat:"bottoms",price:112,img:"photo-1594633312681-425c7b97ccd1",alt:"photo-1542272604-787c3835535d",colors:["#D8C6A4","#2A2622"]},
+  {id:8,name:"Essential Crew Tee",cat:"tops",price:42,img:"photo-1576566588028-4147f3842f27",alt:"photo-1618354691373-d851c5c3a990",colors:["#FAF6EC","#2C4D3E"],badge:"Low stock"},
+];
+const looks = ["photo-1469334031218-e382a71b716b","photo-1539109136881-3be0616acf4b","photo-1434389677669-e08b4cac3105","photo-1487222477894-8943e31ef7b2","photo-1503342217505-b0a15ec3261c","photo-1618354691373-d851c5c3a990"];
+
+const $ = id => document.getElementById(id);
+let cart = [];
+try { cart = (JSON.parse(localStorage.getItem("rama-cart")) || []).filter(i => products.some(p => p.id === i.id)); } catch(e) {}
+const save = () => { try { localStorage.setItem("rama-cart", JSON.stringify(cart)); } catch(e) {} };
+
+function renderGrid(filter="all"){
+  $("grid").innerHTML = products.filter(p => filter==="all" || p.cat===filter).map(p => `
+    <article class="card">
+      <div class="thumb">
+        ${p.badge?`<span class="badge">${p.badge}</span>`:""}
+        <img src="${U(p.img,700)}" alt="${p.name}" loading="lazy">
+        <img class="alt" src="${U(p.alt,700)}" alt="" loading="lazy">
+        <button class="add" data-id="${p.id}">Add to bag</button>
+      </div>
+      <div class="meta">
+        <div><div class="name">${p.name}</div><div class="swatches">${p.colors.map(c=>`<i style="background:${c}"></i>`).join("")}</div></div>
+        <div class="price">$${p.price}</div>
+      </div>
+    </article>`).join("");
+}
+$("look").innerHTML = looks.map(id => `<a href="#"><img src="${U(id,500)}" alt="Customer look" loading="lazy"></a>`).join("");
+
+function renderCart(){
+  $("count").textContent = cart.reduce((a,i)=>a+i.qty,0);
+  $("subtotal").textContent = "$" + cart.reduce((a,i)=>a+i.qty*products.find(p=>p.id===i.id).price,0);
+  $("items").innerHTML = cart.length ? cart.map(i => {
+    const p = products.find(x=>x.id===i.id);
+    return `<div class="item">
+      <img src="${U(p.img,200)}" alt="">
+      <div><div class="n">${p.name}</div><div class="qty"><button data-dec="${p.id}" aria-label="Decrease">−</button>${i.qty}<button data-inc="${p.id}" aria-label="Increase">+</button></div></div>
+      <div style="color:var(--accent)">$${p.price*i.qty}</div></div>`;
+  }).join("") : `<div class="empty">Your bag is empty.</div>`;
+  save();
+}
+
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),1800); }
+const openCart = v => document.body.classList.toggle("open", v);
+
+document.addEventListener("click", e => {
+  const add = e.target.closest("[data-id]");
+  if (add){ const id=+add.dataset.id; const f=cart.find(i=>i.id===id); f?f.qty++:cart.push({id,qty:1}); renderCart(); toast(products.find(p=>p.id===id).name+" added to bag"); }
+  const inc = e.target.closest("[data-inc]"); if (inc){ cart.find(i=>i.id===+inc.dataset.inc).qty++; renderCart(); }
+  const dec = e.target.closest("[data-dec]"); if (dec){ const it=cart.find(i=>i.id===+dec.dataset.dec); it.qty--; if(!it.qty) cart=cart.filter(i=>i!==it); renderCart(); }
+  const chip = e.target.closest(".chip");
+  if (chip){ document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c===chip)); renderGrid(chip.dataset.f); }
+});
+$("cartBtn").onclick = () => openCart(true);
+$("closeCart").onclick = $("scrim").onclick = () => openCart(false);
+document.addEventListener("keydown", e => { if(e.key==="Escape") openCart(false); });
+$("checkout").onclick = () => toast(cart.length ? "Checkout coming soon" : "Add something first");
+$("menuBtn").onclick = () => $("links").classList.toggle("show");
+$("links").onclick = e => { if(e.target.tagName==="A") $("links").classList.remove("show"); };
+$("themeBtn").onclick = () => {
+  const r=document.documentElement, dark = r.dataset.theme ? r.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = dark ? "light" : "dark";
+};
+// Lead form: submissions are emailed via FormSubmit (https://formsubmit.co).
+// The first real submission triggers a one-time activation email to LEAD_EMAIL; click the link in it to start receiving leads.
+// After activation, FormSubmit emails you a random alias string. Put it in place of the address below to hide your email from the page source.
+// Note: FormSubmit rejects submissions from pages opened as file://. Test from a web server or the live site.
+const LEAD_EMAIL = "ramawears@gmail.com";
+const LEAD_ENDPOINT = `https://formsubmit.co/ajax/${LEAD_EMAIL}`;
+
+$("leadForm").onsubmit = async e => {
+  e.preventDefault();
+  const f = e.target, msg = $("leadMsg"), btn = f.querySelector('button[type="submit"]');
+  if (f._honey.value) return; // bot filled the hidden field
+  const checks = [
+    [f.name, v => v.trim().length > 1],
+    [f.email, v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],
+    [f.service, v => v !== ""],
+  ];
+  let ok = true;
+  checks.forEach(([el, test]) => { const good = test(el.value); el.closest(".field").classList.toggle("bad", !good); ok = ok && good; });
+  if (!ok) { msg.textContent = "Please fill in your name, a valid email and a service."; return; }
+
+  const data = {
+    name: f.name.value.trim(),
+    email: f.email.value.trim(),
+    phone: f.phone.value.trim() || "—",
+    service: f.service.value,
+    preferred_date: f.date.value || "—",
+    budget: f.budget.value,
+    notes: f.notes.value.trim() || "—",
+    newsletter_opt_in: f.optin.checked ? "Yes" : "No",
+    _subject: `New RAMA WEARS lead: ${f.service.value} — ${f.name.value.trim()}`,
+    _replyto: f.email.value.trim(),
+    _template: "table",
+    _captcha: "false"
+  };
+
+  btn.disabled = true; btn.textContent = "Sending…"; msg.textContent = "";
+  try {
+    const res = await fetch(LEAD_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok || String(out.success) === "false") throw new Error(out.message || res.status);
+    msg.textContent = `Thank you, ${data.name.split(" ")[0]}. A stylist will contact you within one business day.`;
+    f.reset();
+  } catch (err) {
+    console.error("Lead form error:", err);
+    msg.textContent = "Sorry, we couldn't send your request. Please try again or email us at ramawears@gmail.com.";
+  } finally {
+    btn.disabled = false; btn.textContent = "Request appointment";
+  }
+};
+$("yr").textContent = new Date().getFullYear();
+
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), {threshold:.12}) : null;
+document.querySelectorAll(".reveal").forEach(el => io ? io.observe(el) : el.classList.add("in"));
+
+renderGrid(); renderCart();
+</script>
+</body>
+</html>
