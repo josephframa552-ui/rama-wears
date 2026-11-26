@@ -51,6 +51,7 @@ function renderCart(){
       <div style="color:var(--accent)">$${p.price*i.qty}</div></div>`;
   }).join("") : `<div class="empty">Your bag is empty.</div>`;
   save();
+  if ($("orderSummary")) renderCheckout(); // keep checkout summary in sync with bag edits
 }
 
 function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),1800); }
@@ -67,7 +68,7 @@ document.addEventListener("click", e => {
 $("cartBtn").onclick = () => openCart(true);
 $("closeCart").onclick = $("scrim").onclick = () => openCart(false);
 document.addEventListener("keydown", e => { if(e.key==="Escape") openCart(false); });
-$("checkout").onclick = () => toast(cart.length ? "Checkout coming soon" : "Add something first");
+$("checkout").onclick = () => cart.length ? (location.href = "checkout.html") : toast("Add something first");
 $("menuBtn").onclick = () => $("links").classList.toggle("show");
 $("links").onclick = e => { if(e.target.tagName==="A") $("links").classList.remove("show"); };
 $("themeBtn").onclick = () => {
@@ -133,4 +134,150 @@ $("yr").textContent = new Date().getFullYear();
 const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), {threshold:.12}) : null;
 document.querySelectorAll(".reveal").forEach(el => io ? io.observe(el) : el.classList.add("in"));
 
-renderGrid(); renderCart();
+/* ---------------------------------------------------------------
+   ORDER WORKFLOW
+   1. Customer fills the checkout form (checkout.html).
+   2. classifyOrder() tags the order: priority, value tier, category,
+      fulfilment and payment status.
+   3. The tags go into the email subject as [BRACKETS] so Gmail filters
+      can sort each order into the right label (see ORDERS.md).
+   4. FormSubmit emails the order to ORDER_EMAIL and sends the customer
+      an automatic confirmation.
+   Rules run in the browser, so treat totals as a guide and confirm
+   payment before shipping.
+---------------------------------------------------------------- */
+const ORDER_EMAIL = LEAD_EMAIL; // same inbox as leads: ramawears@gmail.com
+const ORDER_ENDPOINT = `https://formsubmit.co/ajax/${ORDER_EMAIL}`;
+
+const SHIPPING = {
+  standard:      { label: "Standard (3–5 days)",       cost: sub => sub >= 120 ? 0 : 8 },
+  express:       { label: "Express (1–2 days)",        cost: () => 18 },
+  sameday:       { label: "Same-day (city only)",      cost: () => 25 },
+  international: { label: "International (5–10 days)", cost: () => 30 },
+  pickup:        { label: "Store pickup",              cost: () => 0 },
+};
+const PAYMENTS = {
+  cod:   "Cash on delivery",
+  gcash: "GCash",
+  bank:  "Bank transfer",
+};
+const CAT_NAMES = { tops: "Tops", outer: "Outerwear", bottoms: "Bottoms" };
+
+const cartLines = () => cart.map(i => ({ ...products.find(p => p.id === i.id), qty: i.qty }));
+const subtotalOf = lines => lines.reduce((a, l) => a + l.price * l.qty, 0);
+
+// Pure rules: same input always gives the same tags.
+function classifyOrder({ lines, shipping, payment, total }) {
+  const units = lines.reduce((a, l) => a + l.qty, 0);
+  const cats = [...new Set(lines.map(l => l.cat))];
+  const priority = (shipping === "sameday" || shipping === "express") ? "URGENT" : "NORMAL";
+  const tier = total >= 300 ? "VIP" : total >= 100 ? "STANDARD" : "SMALL";
+  const category = cats.length === 1 ? CAT_NAMES[cats[0]].toUpperCase() : "MIXED";
+  const fulfilment = shipping === "pickup" ? "PICKUP" : shipping === "international" ? "INTERNATIONAL" : "DELIVERY";
+  const paymentStatus = payment === "cod" ? "COLLECT-ON-DELIVERY" : "AWAITING-PAYMENT";
+  const flags = [];
+  if (units >= 5) flags.push("BULK");
+  if (payment === "cod" && total >= 200) flags.push("CALL-TO-CONFIRM");
+  return { priority, tier, category, fulfilment, paymentStatus, flags };
+}
+
+function orderNumber() {
+  const d = new Date(), pad = n => String(n).padStart(2, "0");
+  return `RW-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${Math.floor(1000 + Math.random() * 9000)}`;
+}
+
+function renderCheckout() {
+  const box = $("orderSummary");
+  if (!box) return;
+  const f = $("orderForm"), lines = cartLines();
+  if (!lines.length) {
+    box.innerHTML = `<div class="empty">Your bag is empty.<br><a href="shop.html" class="btn solid" style="margin-top:20px">Go to shop</a></div>`;
+    f.querySelector('button[type="submit"]').disabled = true;
+    return;
+  }
+  f.querySelector('button[type="submit"]').disabled = false;
+  const sub = subtotalOf(lines), ship = SHIPPING[f.shipping.value].cost(sub), total = sub + ship;
+  box.innerHTML = lines.map(l => `
+    <div class="item"><img src="${U(l.img, 200)}" alt=""><div><div class="n">${l.name}</div><small style="color:var(--muted)">Qty ${l.qty} · $${l.price} each</small></div><div>$${l.price * l.qty}</div></div>`).join("") + `
+    <div class="sum-row"><span>Subtotal</span><span>$${sub}</span></div>
+    <div class="sum-row"><span>Shipping</span><span>${ship ? "$" + ship : "Free"}</span></div>
+    <div class="sum-row total-row"><span>Total</span><span>$${total}</span></div>`;
+}
+
+if ($("orderForm")) {
+  const f = $("orderForm");
+  f.addEventListener("change", e => {
+    if (e.target.name !== "shipping") return;
+    // Pickup needs no address; everything else does.
+    const pickup = f.shipping.value === "pickup";
+    f.querySelectorAll("[data-addr]").forEach(el => el.closest(".field").style.display = pickup ? "none" : "");
+    renderCheckout();
+  });
+  f.onsubmit = async e => {
+    e.preventDefault();
+    const msg = $("orderMsg"), btn = f.querySelector('button[type="submit"]');
+    if (f._honey.value) return;
+    const lines = cartLines();
+    if (!lines.length) { msg.textContent = "Your bag is empty."; return; }
+    const pickup = f.shipping.value === "pickup";
+    const checks = [
+      [f.name, v => v.trim().length > 1],
+      [f.email, v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],
+      [f.phone, v => v.replace(/\D/g, "").length >= 7],
+      ...(pickup ? [] : [[f.address, v => v.trim().length > 4], [f.city, v => v.trim().length > 1]]),
+    ];
+    let ok = true;
+    checks.forEach(([el, test]) => { const good = test(el.value); el.closest(".field").classList.toggle("bad", !good); ok = ok && good; });
+    if (!ok) { msg.textContent = "Please complete the highlighted fields."; return; }
+
+    const sub = subtotalOf(lines), shipCost = SHIPPING[f.shipping.value].cost(sub), total = sub + shipCost;
+    const tags = classifyOrder({ lines, shipping: f.shipping.value, payment: f.payment.value, total });
+    const id = orderNumber();
+    const tagStr = [tags.priority, tags.tier, tags.fulfilment, tags.paymentStatus, ...tags.flags].map(t => `[${t}]`).join(" ");
+
+    const data = {
+      order_number: id,
+      classification: `${tags.priority} · ${tags.tier} · ${tags.category} · ${tags.fulfilment} · ${tags.paymentStatus}${tags.flags.length ? " · " + tags.flags.join(", ") : ""}`,
+      items: lines.map(l => `${l.qty} × ${l.name} (${CAT_NAMES[l.cat]}) @ $${l.price} = $${l.price * l.qty}`).join("\n"),
+      subtotal: `$${sub}`,
+      shipping: `${SHIPPING[f.shipping.value].label} — ${shipCost ? "$" + shipCost : "Free"}`,
+      total: `$${total}`,
+      payment_method: PAYMENTS[f.payment.value],
+      customer_name: f.name.value.trim(),
+      customer_email: f.email.value.trim(),
+      customer_phone: f.phone.value.trim(),
+      address: pickup ? "Store pickup" : `${f.address.value.trim()}, ${f.city.value.trim()} ${f.postal.value.trim()}`.trim(),
+      notes: f.notes.value.trim() || "—",
+      placed_at: new Date().toLocaleString(),
+      _subject: `${tagStr} Order ${id} · $${total} · ${tags.category[0] + tags.category.slice(1).toLowerCase()} · ${f.name.value.trim()}`,
+      _replyto: f.email.value.trim(),
+      _template: "table",
+      _captcha: "false",
+      _autoresponse: `Thank you for your RAMA WEARS order ${id} (total $${total}). We'll contact you within one business day to confirm ${f.payment.value === "cod" ? "delivery" : "payment and delivery"}.`,
+    };
+
+    btn.disabled = true; btn.textContent = "Placing order…"; msg.textContent = "";
+    try {
+      const res = await fetch(ORDER_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || String(out.success) === "false") throw new Error(out.message || res.status);
+      cart = []; renderCart();
+      $("checkoutWrap").innerHTML = `<div class="done reveal in">
+        <div class="eyebrow">Order received</div>
+        <h2>Thank you, <em>${data.customer_name.split(" ")[0]}</em></h2>
+        <p>Your order number is <b>${id}</b>. A confirmation is on its way to ${data.customer_email}. We'll contact you within one business day to confirm ${f.payment.value === "cod" ? "delivery" : "payment and delivery"}.</p>
+        <a href="shop.html" class="btn solid">Continue shopping</a></div>`;
+      scrollTo({ top: 0 });
+    } catch (err) {
+      console.error("Order error:", err);
+      msg.textContent = "Sorry, we couldn't place your order. Please try again or email ramawears@gmail.com.";
+      btn.disabled = false; btn.textContent = "Place order";
+    }
+  };
+}
+
+renderGrid(); renderCart(); renderCheckout();
