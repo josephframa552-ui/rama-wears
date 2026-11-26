@@ -1,0 +1,154 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services | RAMA WEARS</title>
+<meta name="description" content="Personal styling, made to measure, alterations and gifting from RAMA WEARS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="services">
+
+<div class="bar">Complimentary shipping over <b>$120</b> &nbsp;Â·&nbsp; 30-day returns</div>
+
+<header>
+  <div class="wrap nav">
+    <nav class="links" id="links">
+      <a href="shop.html">Shop</a>
+      <a href="services.html" class="active" aria-current="page">Services</a>
+      <a href="delivery.html">Delivery</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="index.html" class="logo">RAMA<small>WEARS</small></a>
+    <div class="actions">
+      <button class="hide-sm" id="themeBtn" aria-label="Toggle theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+      </button>
+      <button class="cart-btn" id="cartBtn" aria-label="Open bag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="count" id="count">0</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="page-hero">
+    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=2000&q=80" alt="" fetchpriority="high">
+    <div class="wrap">
+      <div class="eyebrow">Beyond the garment</div>
+      <h1>Our <em>services</em></h1>
+      <p>Styling, tailoring and aftercare from the people who design our clothes.</p>
+      <div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Services</div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><div class="eyebrow">Beyond the garment</div><h2>How we can <em>help</em></h2></div>
+        <p style="max-width:380px;color:var(--muted);font-weight:300">Personal care at every step, from the first fitting to the tenth year of wear.</p>
+      </div>
+      <div class="services">
+        <article class="svc reveal">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=700&q=80" alt="Private styling studio" loading="lazy"></div>
+          <div class="body"><h4>Personal styling</h4><p>A one-to-one session with our stylists, in studio or by video call, to build a wardrobe around you.</p><div class="from">Complimentary</div></div>
+        </article>
+        <article class="svc reveal">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=700&q=80" alt="Garments on a tailoring rail" loading="lazy"></div>
+          <div class="body"><h4>Made to measure</h4><p>Trousers, shirts and outerwear cut to your measurements and finished by hand in 3â€“4 weeks.</p><div class="from">From $180</div></div>
+        </article>
+        <article class="svc reveal">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" alt="Neutral garments ready for alteration" loading="lazy"></div>
+          <div class="body"><h4>Alterations &amp; repairs</h4><p>Hemming, tapering and mending for every RAMA piece. Free repairs for five years.</p><div class="from">Free for 5 years</div></div>
+        </article>
+        <article class="svc reveal">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80" alt="Gift shopping bags" loading="lazy"></div>
+          <div class="body"><h4>Gifting &amp; corporate</h4><p>Signature gift wrapping, handwritten notes and bulk orders for teams and events.</p><div class="from">On request</div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="wrap">
+      <div class="lead reveal">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1100&q=80" alt="Rail of RAMA WEARS garments" loading="lazy">
+          <div class="perk">Book a session and get <em>10% off</em> your first order.</div>
+        </div>
+        <div class="form-side">
+          <div class="eyebrow" style="color:var(--gold-soft)">Private appointments</div>
+          <h2>Book your <em>styling</em></h2>
+          <p class="sub">Tell us a little about you. A stylist will reach out within one business day.</p>
+          <form id="leadForm" novalidate>
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+            <div class="fgrid">
+              <div class="field"><label for="lName">Full name</label><input id="lName" name="name" placeholder="Jane Doe" required autocomplete="name"></div>
+              <div class="field"><label for="lEmail">Email</label><input id="lEmail" name="email" type="email" placeholder="you@example.com" required autocomplete="email"></div>
+              <div class="field"><label for="lPhone">Phone</label><input id="lPhone" name="phone" type="tel" placeholder="09XX XXX XXXX" autocomplete="tel"></div>
+              <div class="field"><label for="lService">Interested in</label>
+                <select id="lService" name="service" required>
+                  <option value="">Choose a service</option>
+                  <option>Personal styling</option>
+                  <option>Made to measure</option>
+                  <option>Alterations &amp; repairs</option>
+                  <option>Gifting &amp; corporate</option>
+                </select>
+              </div>
+              <div class="field"><label for="lDate">Preferred date</label><input id="lDate" name="date" type="date"></div>
+              <div class="field"><label for="lBudget">Budget</label>
+                <select id="lBudget" name="budget"><option>Under $250</option><option>$250 â€“ $500</option><option>$500 â€“ $1,000</option><option>$1,000+</option></select>
+              </div>
+              <div class="field full"><label for="lNotes">Anything else?</label><textarea id="lNotes" name="notes" placeholder="Sizes, occasions, styles you loveâ€¦"></textarea></div>
+              <label class="check full" style="grid-column:1/-1"><input type="checkbox" name="optin" checked> Send me early access to new drops and restocks.</label>
+            </div>
+            <button class="btn gold" type="submit">Request appointment</button>
+            <div class="form-msg" id="leadMsg" role="status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="logo">RAMA<small>WEARS</small></div>
+        <p style="color:var(--muted);margin-top:18px;max-width:300px;font-size:14px;font-weight:300">Modern essentials, cut to last. Designed with care, made in small batches.</p>
+      </div>
+      <div><h5>Shop</h5><ul><li><a href="shop.html">New in</a></li><li><a href="shop.html">Tops</a></li><li><a href="shop.html">Outerwear</a></li><li><a href="shop.html">Bottoms</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="about.html">Our story</a></li><li><a href="services.html">Services</a></li><li><a href="reviews.html">Reviews</a></li></ul></div>
+      <div><h5>Help</h5><ul><li><a href="delivery.html">Shipping</a></li><li><a href="delivery.html">Returns</a></li><li><a href="#">Size guide</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="#">Pinterest</a></li></ul></div>
+    </div>
+    <div class="bigname">RAMA WEARS</div>
+    <div class="legal"><span>Â© <span id="yr"></span> RAMA WEARS. All rights reserved.</span><span>Photography: Unsplash</span></div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping bag">
+  <div class="drawer-head">Your bag <button id="closeCart" aria-label="Close bag">âœ•</button></div>
+  <div class="items" id="items"></div>
+  <div class="drawer-foot">
+    <div class="total"><span>Subtotal</span><span id="subtotal">$0</span></div>
+    <button class="btn solid" id="checkout">Checkout</button>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
